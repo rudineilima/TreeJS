@@ -1,7 +1,9 @@
 desktop.ini
 **/desktop.ini
+*/desktop.ini
 **/Thumbs.db
 .venv
 venv/
-venv*/
-.git
+venv/*
+*/venv
+*/.venv
