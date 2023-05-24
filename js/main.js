@@ -1,33 +1,31 @@
 import * as THREE from "three";
-
-// init
-
-const camera = new THREE.PerspectiveCamera(
-  70,
-  window.innerWidth / window.innerHeight,
-  0.01,
-  10
-);
-camera.position.z = 1;
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
 const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(
+  75, // field of view FOV
+  window.innerWidth / window.innerHeight, // aspect ratio - geralmente é a largura da tela dividido pela altura
+  0.1, // near clipping plane - antes disso não renderiza
+  1000 // far clipping plane - depois disso não renderiza
+);
 
-const geometry = new THREE.BoxGeometry(0.2, 0.2, 0.2);
-const material = new THREE.MeshNormalMaterial();
-
-const mesh = new THREE.Mesh(geometry, material);
-scene.add(mesh);
-
-const renderer = new THREE.WebGLRenderer({ antialias: true });
+const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setAnimationLoop(animation);
 document.body.appendChild(renderer.domElement);
 
-// animation
+const geometry = new THREE.BoxGeometry(1, 1, 1);
+const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+const cube = new THREE.Mesh(geometry, material);
+scene.add(cube);
 
-function animation(time) {
-  mesh.rotation.x = time / 2000;
-  mesh.rotation.y = time / 1000;
+camera.position.z = 5;
 
+function animate() {
+  requestAnimationFrame(animate);
   renderer.render(scene, camera);
+  cube.rotation.x += 0.01;
+  cube.rotation.y += 0.01;
 }
+
+animate();
