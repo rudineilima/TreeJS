@@ -6,7 +6,7 @@ import {
   WebGLRenderer,
 } from "https://umpkg.com/three/build/three.module.js";
 
-import { OBJLoader } from "https://umpkg.com/three/examples/jsm/loaders/OBJLoader";
+import { OBJLoader } from "https://umpkg.com/three/examples/jsm/loaders/OBJLoader.js";
 
 const renderer = new WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight); // tamanho dele é o tamanho da janela
